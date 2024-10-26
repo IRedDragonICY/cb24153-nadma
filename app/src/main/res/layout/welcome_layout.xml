@@ -1,65 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#CCE0FF"
-              android:padding="16dp">
+              android:background="#CCE0FF">
 
-    <!-- Welcome Header -->
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome to"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:gravity="center"
-            android:layout_marginTop="32dp"/>
 
-    <!-- NADMA Logo -->
-    <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/ic_nadma_logo"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"/>
-
-    <!-- Map of Malaysia -->
-    <ImageView
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:src="@drawable/map_malaysia"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"/>
-
-    <!-- NADMA Title -->
-    <TextView
+    <!-- Get Started CardView -->
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="NADMA"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_marginTop="16dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <!-- Description -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Explore detailed information on disaster management, emergency response protocols, and financial assistance. Stay updated with the latest news, alerts, and preventive measures to ensure your safety and well-being during critical times."
-            android:textSize="16sp"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_marginTop="16dp"
-            android:padding="8dp"/>
+        <!-- Welcome Header -->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome to"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_marginTop="32dp"/>
 
-    <!-- Get Started Button -->
+        <!-- NADMA Logo -->
+        <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_nadma_logo"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"/>
+
+        <!-- Map of Malaysia -->
+        <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:src="@drawable/map_malaysia"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"/>
+
+        <!-- NADMA Title -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NADMA"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_marginTop="16dp"/>
+
+        <!-- Description -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explore detailed information on disaster management, emergency response protocols, and financial assistance. Stay updated with the latest news, alerts, and preventive measures to ensure your safety and well-being during critical times."
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"/>
+    </LinearLayout>
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="4dp"
             android:padding="16dp">
 
         <LinearLayout
@@ -69,12 +79,12 @@
                 android:gravity="center">
 
             <Button
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:text="Get Started"
                     android:textSize="18sp"
                     android:textColor="#FFFFFF"
-                    android:backgroundTint="#0057A8"
+                    android:background="@drawable/rounded_button"
                     android:padding="12dp"
                     android:layout_gravity="center"/>
 
@@ -87,6 +97,17 @@
                     android:gravity="center"
                     android:layout_marginTop="16dp"/>
 
+            <!-- New TextView Added Below Terms of Service -->
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="This app managed by government"
+                    android:textSize="12sp"
+                    android:textStyle="bold|italic"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"/>
+
             <!-- Icons Row -->
             <LinearLayout
                     android:layout_width="match_parent"
@@ -96,7 +117,6 @@
                     android:layout_marginTop="16dp"
                     android:padding="8dp">
 
-                <!-- Repeat your ImageViews as needed -->
                 <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -125,6 +145,7 @@
                         android:layout_height="32dp"
                         android:src="@drawable/ic_mmd"
                         android:layout_marginStart="8dp"/>
+
                 <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
