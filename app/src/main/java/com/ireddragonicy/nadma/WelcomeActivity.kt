@@ -9,7 +9,7 @@ class WelcomeActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.welcome_layout)
+        setContentView(R.layout.activity_welcome)
 
         val getStartedButton: Button = findViewById(R.id.getStartedButton)
 

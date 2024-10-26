@@ -15,55 +15,8 @@
         android:gravity="center"
         android:padding="8dp">
 
-        <!-- Icons Row -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <!-- Repeat your ImageViews as needed -->
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_who" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_jupem"
-                android:layout_marginStart="8dp" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_jps"
-                android:layout_marginStart="8dp" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_jas"
-                android:layout_marginStart="8dp" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_mmd"
-                android:layout_marginStart="8dp" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_moh"
-                android:layout_marginStart="8dp" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_jkr"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
+        <!-- Gov Icons -->
+        <include layout="@layout/gov_icons"/>
     </LinearLayout>
 
     <!-- Separator Line -->
@@ -75,16 +28,16 @@
 
     <!-- Government Managed Text -->
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="This app managed by government"
-            android:textSize="14sp"
-            android:textStyle="italic"
-            android:layout_marginTop="8dp"
-            android:textColor="#707070"
-            android:gravity="center"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This app managed by government"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:layout_marginTop="8dp"
+        android:textColor="#707070"
+        android:gravity="center"/>
 
-    <!-- Spacer to push the logo to the center -->
+    <!-- Spacer -->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -98,18 +51,16 @@
         android:layout_gravity="center"
         android:contentDescription="@string/nadma_logo" />
 
-    <!-- Title Text -->
-
     <!-- Description Text -->
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="NADMA"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:textColor="#000000"
-            android:gravity="center"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NADMA"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:textColor="#000000"
+        android:gravity="center"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,7 +71,7 @@
         android:padding="16dp"
         android:textColor="#000000" />
 
-    <!-- Spacer to push the version text down -->
+    <!-- Spacer -->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -128,8 +79,8 @@
 
     <!-- Malaysia Logo -->
     <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
         android:src="@drawable/ic_product_malaysia"
         android:layout_marginBottom="8dp"
         android:contentDescription="Malaysia Logo"
@@ -137,11 +88,11 @@
 
     <!-- Version Text -->
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Version 1.0.0"
-            android:textSize="12sp"
-            android:layout_marginBottom="16dp"
-            android:textColor="#000000"
-            android:gravity="center"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Version 1.0.0"
+        android:textSize="12sp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#000000"
+        android:gravity="center"/>
 </LinearLayout>
