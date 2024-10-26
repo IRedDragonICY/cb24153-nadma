@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#CCE0FF">
-
+              android:background="#CCE0FF"
+              tools:context=".WelcomeActivity">
 
     <!-- Get Started CardView -->
     <LinearLayout
@@ -64,6 +65,7 @@
                 android:layout_marginTop="16dp"
                 android:padding="8dp"/>
     </LinearLayout>
+
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,7 +80,9 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
+            <!-- Get Started Button -->
             <Button
+                    android:id="@+id/getStartedButton"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:text="Get Started"
@@ -97,7 +101,7 @@
                     android:gravity="center"
                     android:layout_marginTop="16dp"/>
 
-            <!-- New TextView Added Below Terms of Service -->
+            <!-- App Management Info -->
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

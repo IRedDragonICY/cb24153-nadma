@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Nadma</string>
     <string name="nadma_logo">nadma_logo</string>
-    <string name="nadma_description">The National Disaster Management Agency (NADMA) is a governmental body under the Prime Minister's Department of Malaysia, responsible for coordinating disaster management efforts in the country.</string>
+    <string name="nadma_description">The National Disaster Management Agency (NADMA) is a governmental body under the Prime Minister\'s Department of Malaysia, responsible for coordinating disaster management efforts in the country.</string>
 </resources>
