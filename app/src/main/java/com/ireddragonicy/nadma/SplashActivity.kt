@@ -29,14 +29,16 @@ class SplashActivity : ComponentActivity() {
         val sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
         val isFirstTime = sharedPreferences.getBoolean(KEY_FIRST_TIME, true)
 
-        if (isFirstTime) {
+        val intent = if (isFirstTime) {
             sharedPreferences.edit().putBoolean(KEY_FIRST_TIME, false).apply()
-            startActivity(Intent(this, WelcomeActivity::class.java))
+            Intent(this, WelcomeActivity::class.java)
         } else {
-            startActivity(Intent(this, MainActivity::class.java))
+            Intent(this, MainActivity::class.java)
         }
 
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, android.R.anim.fade_in, android.R.anim.fade_out)
+
+        startActivity(intent)
         finish()
     }
 }
