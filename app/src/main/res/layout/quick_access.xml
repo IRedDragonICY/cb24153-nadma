@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Guidelines Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_guidelines"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:text="GUIDE"
+            app:icon="@drawable/ic_guidelines"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@color/white"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorPrimary"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="6sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeStepGranularity="1sp" />
+
+        <!-- Emergency Contact Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_emergency_contact"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:text="Emergency\nContact"
+            app:icon="@drawable/ic_emergency_contact"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@color/white"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorPrimary"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="6sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeStepGranularity="1sp" />
+
+        <!-- Report Incident Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_report_incident"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:text="Report\nIncident"
+            app:icon="@drawable/ic_report_incident"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@color/white"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorPrimary"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="6sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeStepGranularity="1sp" />
+
+        <!-- Data Report Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_data_report"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:text="Data\nReport"
+            app:icon="@drawable/ic_data_report"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@color/white"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorPrimary"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="6sp"
+            app:autoSizeMaxTextSize="14sp"
+            app:autoSizeStepGranularity="1sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
