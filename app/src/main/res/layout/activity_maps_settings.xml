@@ -19,7 +19,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_arrow_back"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"/> <!-- Added paddingStart -->
 
         <TextView
             android:id="@+id/titleMapsSettings"
@@ -43,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleDisaster"
@@ -79,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleEvacuationCenter"
@@ -115,7 +118,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleWeather"
@@ -151,7 +155,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleAirQuality"
@@ -187,7 +192,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleRainfall"
@@ -223,7 +229,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleRiverWaterLevel"
@@ -259,7 +266,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleRoadClosure"
@@ -295,7 +303,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleVolunteers"
@@ -331,7 +340,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"> <!-- Added paddingStart -->
 
             <TextView
                 android:id="@+id/titleSeaTide"
@@ -356,14 +366,15 @@
 
     <!-- Reset to Default -->
     <TextView
-            android:id="@+id/resetToDefault"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reset to default"
-            android:textColor="@android:color/holo_blue_dark"
-            android:paddingTop="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingLeft="8dp" android:minHeight="48dp"/>
-
+        android:id="@+id/resetToDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset to default"
+        android:textColor="@android:color/holo_blue_dark"
+        android:paddingTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:minHeight="48dp"/>
 </LinearLayout>
