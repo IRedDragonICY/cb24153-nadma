@@ -1,0 +1,369 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MapsSettingsActivity">
+
+    <!-- Title with Icon -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/titleMapsSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maps Settings"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Disaster -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleDisaster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disaster"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descDisaster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shows or hides disaster-related events on the map, such as floods or landslides."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxDisaster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Evacuation Center -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleEvacuationCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Evacuation Center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descEvacuationCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Displays or hides the locations of evacuation centers on the map."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxEvacuationCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Weather -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weather"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toggles the display of current weather conditions on the map."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Air Quality -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleAirQuality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Air Quality"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descAirQuality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shows or hides air quality information across different regions on the map."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxAirQuality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Rainfall Distribution -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleRainfall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rainfall Distribution"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descRainfall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Displays or hides the rainfall data, indicating the amount of precipitation in various areas."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxRainfall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- River Water Level -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleRiverWaterLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="River Water Level"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descRiverWaterLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shows or hides the river water level status, indicating areas prone to flooding."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxRiverWaterLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Road Closure -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleRoadClosure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Road Closure"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descRoadClosure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Displays or hides road closures due to disasters or other events on the map."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxRoadClosure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Volunteers -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleVolunteers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volunteers"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descVolunteers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shows or hides locations where volunteers are needed or active in disaster relief."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxVolunteers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Sea Tide -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/titleSeaTide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sea Tide"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/descSeaTide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Displays or hides information about sea tide levels, important for coastal areas."
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxSeaTide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Reset to Default -->
+    <TextView
+            android:id="@+id/resetToDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset to default"
+            android:textColor="@android:color/holo_blue_dark"
+            android:paddingTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="8dp" android:minHeight="48dp"/>
+
+</LinearLayout>
