@@ -6,6 +6,14 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+    <!--text Quick Access-->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quick Access"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"/>
     <!-- Quick Access Section -->
     <include layout="@layout/quick_access" />
 
