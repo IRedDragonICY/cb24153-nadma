@@ -1,22 +1,28 @@
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <!--text Quick Access-->
+    <!-- Header -->
+    <include layout="@layout/header" />
+
+    <!-- Quick Access Text Below the Header -->
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quick Access"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quick Access"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp" />
+
     <!-- Quick Access Section -->
     <include layout="@layout/quick_access" />
 
     <!-- Navbar Section -->
     <include layout="@layout/navbar" />
+
 </LinearLayout>
