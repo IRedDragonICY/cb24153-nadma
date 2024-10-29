@@ -8,6 +8,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
+    private val navOrder = listOf(
+        R.id.nav_home,
+        R.id.nav_maps,
+        R.id.nav_news,
+        R.id.nav_notification,
+        R.id.nav_account
+    )
+
     private val fragments = mutableMapOf<Int, Fragment>()
     private var activeFragment: Fragment? = null
 
@@ -30,8 +38,11 @@ class MainActivity : AppCompatActivity() {
             val targetFragment = getFragment(item.itemId)
             if (targetFragment != null && targetFragment != activeFragment) {
                 supportFragmentManager.beginTransaction().apply {
-                    val currentItem = bottomNav.selectedItemId
-                    if (item.itemId > currentItem) {
+                    val currentItemId = bottomNav.selectedItemId
+                    val currentPos = navOrder.indexOf(currentItemId)
+                    val targetPos = navOrder.indexOf(item.itemId)
+
+                    if (targetPos > currentPos) {
                         setCustomAnimations(
                             R.anim.slide_in_right,
                             R.anim.slide_out_left,
@@ -46,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                             R.anim.slide_out_left
                         )
                     }
+
                     hide(activeFragment!!)
                     show(targetFragment)
                     commit()
