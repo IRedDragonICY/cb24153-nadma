@@ -29,10 +29,27 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { item ->
             val targetFragment = getFragment(item.itemId)
             if (targetFragment != null && targetFragment != activeFragment) {
-                supportFragmentManager.beginTransaction()
-                    .hide(activeFragment!!)
-                    .show(targetFragment)
-                    .commit()
+                supportFragmentManager.beginTransaction().apply {
+                    val currentItem = bottomNav.selectedItemId
+                    if (item.itemId > currentItem) {
+                        setCustomAnimations(
+                            R.anim.slide_in_right,
+                            R.anim.slide_out_left,
+                            R.anim.slide_in_left,
+                            R.anim.slide_out_right
+                        )
+                    } else {
+                        setCustomAnimations(
+                            R.anim.slide_in_left,
+                            R.anim.slide_out_right,
+                            R.anim.slide_in_right,
+                            R.anim.slide_out_left
+                        )
+                    }
+                    hide(activeFragment!!)
+                    show(targetFragment)
+                    commit()
+                }
                 activeFragment = targetFragment
                 true
             } else {
@@ -49,6 +66,12 @@ class MainActivity : AppCompatActivity() {
         return fragments[itemId] ?: createFragment(itemId)?.also { fragment ->
             fragments[itemId] = fragment
             supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left,
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_right
+                )
                 .add(R.id.main_container, fragment, itemId.toString())
                 .hide(fragment)
                 .commit()
