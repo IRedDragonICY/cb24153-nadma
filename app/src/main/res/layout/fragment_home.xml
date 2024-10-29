@@ -9,7 +9,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/header" />
+        <include
+            android:id="@+id/headerHome"
+            layout="@layout/header_home" />
 
         <TextView
             android:layout_width="wrap_content"
