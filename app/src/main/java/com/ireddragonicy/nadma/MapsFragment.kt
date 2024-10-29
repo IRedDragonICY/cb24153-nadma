@@ -1,5 +1,6 @@
 package com.ireddragonicy.nadma
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -36,7 +37,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps) {
 
         mapView.setMultiTouchControls(true)
         mapView.controller.setZoom(15.0)
-        mapView.controller.setCenter(GeoPoint(3.1390, 101.6869))
+        mapView.controller.setCenter(GeoPoint(3.54306, 103.43611))
 
         val locationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(requireContext()), mapView)
         locationOverlay.enableMyLocation()
@@ -49,6 +50,11 @@ class MapsFragment : Fragment(R.layout.fragment_maps) {
         val scaleBarOverlay = ScaleBarOverlay(mapView)
         scaleBarOverlay.setAlignRight(true)
         mapView.overlays.add(scaleBarOverlay)
+
+        binding.headerMaps.iconSettings.setOnClickListener {
+            val intent = Intent(requireContext(), MapsSettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {
