@@ -15,7 +15,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -24,10 +23,13 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -44,10 +46,24 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes.addAll(
+                listOf(
+                    "/META-INF/{AL2.0,LGPL2.1}",
+                    "META-INF/DEPENDENCIES",
+                    "META-INF/LICENSE",
+                    "META-INF/LICENSE.txt",
+                    "META-INF/license.txt",
+                    "META-INF/NOTICE",
+                    "META-INF/NOTICE.txt",
+                    "META-INF/notice.txt",
+                    "META-INF/*.kotlin_module"
+                )
+            )
         }
-    }
 }
+
+}
+
 
 dependencies {
 
