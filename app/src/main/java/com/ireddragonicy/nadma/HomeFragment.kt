@@ -1,14 +1,15 @@
 package com.ireddragonicy.nadma
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import java.util.Locale
 import androidx.fragment.app.Fragment
 import com.ireddragonicy.nadma.databinding.FragmentHomeBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class HomeFragment : Fragment() {
 
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setDynamicDate()
+        setupButtonListeners()
     }
 
     private fun setDynamicDate() {
@@ -39,6 +41,13 @@ class HomeFragment : Fragment() {
         binding.headerHome.textDay.text = dateFormatDay.format(calendar.time)
         binding.headerHome.textMonth.text = dateFormatMonth.format(calendar.time).uppercase(Locale.getDefault())
         binding.headerHome.textYear.text = dateFormatYear.format(calendar.time)
+    }
+
+    private fun setupButtonListeners() {
+        binding.quickAccess.btnEmergencyContact.setOnClickListener {
+            val intent = Intent(requireContext(), EmergencyContactActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {
