@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WELCOME TO"
-        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:textSize="70sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
@@ -84,17 +84,19 @@
                 android:gravity="center">
 
             <!-- Get Started Button -->
-            <Button
-                    android:id="@+id/getStartedButton"
-                    android:layout_width="350dp"
-                    android:layout_height="wrap_content"
-                    android:text="Get Started"
-                    android:textSize="18sp"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/rounded_button"
-                    android:padding="12dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="16dp"/>
+        <Button
+            android:id="@+id/getStartedButton"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:text="Get Started"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rounded_button"
+            android:padding="12dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"/>
+
+
 
             <TextView
                     android:layout_width="match_parent"

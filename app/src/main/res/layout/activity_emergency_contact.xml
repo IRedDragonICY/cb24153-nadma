@@ -11,27 +11,19 @@
     android:fitsSystemWindows="true"
     tools:context=".EmergencyContactActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Title with back arrow -->
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:text="Emergency Contact"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:drawableStart="@drawable/ic_arrow_back"
+        android:drawablePadding="16dp"
         android:gravity="center_vertical"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"/>
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Emergency Contact"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingStart="16dp"/>
-    </LinearLayout>
-
+    <!-- Search Staff Directory Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_search_staff_directory"
         android:layout_width="match_parent"
@@ -42,99 +34,53 @@
         app:iconGravity="textStart"
         style="@style/Widget.MaterialComponents.Button"/>
 
-    <LinearLayout
+    <!-- Contact Person Section -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="16dp">
+        android:text="Contact Person"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Contact Person"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
+    <!-- Phone Number -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+603 8870 4800"
+        android:textSize="16sp"
+        android:drawableStart="@drawable/ic_phone"
+        android:drawableEnd="@drawable/ic_forward"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingVertical="8dp">
+    <!-- Fax Number -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+603 8870 4848"
+        android:textSize="16sp"
+        android:drawableStart="@drawable/ic_fax"
+        android:drawableEnd="@drawable/ic_forward"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp"/>
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_phone" />
+    <!-- Email -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="admin@nadma.gov.my"
+        android:textSize="16sp"
+        android:drawableStart="@drawable/ic_email"
+        android:drawableEnd="@drawable/ic_forward"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="+603 8870 4800"
-                android:paddingStart="16dp"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_forward"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingVertical="8dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_fax" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="+603 8870 4848"
-                android:paddingStart="16dp"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_forward"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingVertical="8dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_email" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="admin@nadma.gov.my"
-                android:paddingStart="16dp"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_forward"/>
-        </LinearLayout>
-    </LinearLayout>
-
+    <!-- Office Location -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -142,40 +88,32 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:paddingTop="16dp"
-        android:paddingBottom="8dp" />
+        android:paddingBottom="8dp"/>
 
+    <!-- Office Address -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="National Disaster Management Agency (NADMA),\nPrime Minister's Department,\nLevel B1, 6 &amp; 7, Setia Perkasa 5, Setia Perkasa Complex,\nFederal Government Administrative Centre,\n62502 Federal Territory of Putrajaya"
         android:textSize="14sp"
-        android:lineSpacingExtra="4dp" />
+        android:lineSpacingExtra="4dp"/>
 
-    <LinearLayout
+    <!-- Geolocation -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:text="Geolocation: 2.937323, 101.704762"
+        android:textSize="14sp"
+        android:drawableStart="@drawable/ic_location"
+        android:drawablePadding="16dp"
         android:gravity="center_vertical"
-        android:paddingTop="8dp">
+        android:paddingTop="8dp"/>
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_location" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:text="Geolocation: 2.937323, 101.704762"
-            android:textSize="14sp" />
-    </LinearLayout>
-
+    <!-- Map View -->
     <org.osmdroid.views.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="320dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray" />
-
+        android:background="@android:color/darker_gray"/>
 </LinearLayout>
