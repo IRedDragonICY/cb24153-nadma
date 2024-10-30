@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ireddragonicy.nadma.databinding.FragmentHomeBinding
+import com.ireddragonicy.nadma.services.LocationService
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -15,10 +16,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    private val dateFormatDay = SimpleDateFormat("dd", Locale.getDefault())
-    private val dateFormatMonth = SimpleDateFormat("MMM", Locale.getDefault())
-    private val dateFormatYear = SimpleDateFormat("yyyy", Locale.getDefault())
+    private lateinit var locationService: LocationService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,22 +29,31 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setDynamicDate()
+        locationService = LocationService(requireContext())
+
+        setDynamicContent()
         setupButtonListeners()
     }
 
-    private fun setDynamicDate() {
+    private fun setDynamicContent() {
         val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        val dateParts = dateFormat.format(calendar.time).split(" ")
 
-        binding.headerHome.textDay.text = dateFormatDay.format(calendar.time)
-        binding.headerHome.textMonth.text = dateFormatMonth.format(calendar.time).uppercase(Locale.getDefault())
-        binding.headerHome.textYear.text = dateFormatYear.format(calendar.time)
+        binding.headerHome.apply {
+            textDay.text = dateParts[0]
+            textMonth.text = dateParts[1].uppercase(Locale.getDefault())
+            textYear.text = dateParts[2]
+        }
+
+        locationService.getCurrentLocation { location ->
+            binding.headerHome.locationText.text = location
+        }
     }
 
     private fun setupButtonListeners() {
         binding.quickAccess.btnEmergencyContact.setOnClickListener {
-            val intent = Intent(requireContext(), EmergencyContactActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), EmergencyContactActivity::class.java))
         }
     }
 
