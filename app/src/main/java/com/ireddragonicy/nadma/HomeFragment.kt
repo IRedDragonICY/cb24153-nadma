@@ -11,6 +11,7 @@ import com.ireddragonicy.nadma.services.LocationService
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlin.concurrent.thread
 
 class HomeFragment : Fragment() {
 
@@ -46,8 +47,12 @@ class HomeFragment : Fragment() {
             textYear.text = dateParts[2]
         }
 
-        locationService.getCurrentLocation { location ->
-            binding.headerHome.locationText.text = location
+        thread {
+            locationService.getCurrentLocation { location ->
+                activity?.runOnUiThread {
+                    binding.headerHome.locationText.text = location
+                }
+            }
         }
     }
 
@@ -55,7 +60,12 @@ class HomeFragment : Fragment() {
         binding.quickAccess.btnEmergencyContact.setOnClickListener {
             startActivity(Intent(requireContext(), EmergencyContactActivity::class.java))
         }
+
+        binding.quickAccess.btnReportIncident.setOnClickListener {
+            startActivity(Intent(requireContext(), ReportIncidentActivity::class.java))
+        }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

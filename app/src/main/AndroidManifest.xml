@@ -47,6 +47,10 @@
             android:name=".EmergencyContactActivity"
             android:exported="false"
             android:theme="@style/Theme.Nadma"/>
+        <activity
+            android:name=".ReportIncidentActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Nadma"/>
 
     </application>
 
