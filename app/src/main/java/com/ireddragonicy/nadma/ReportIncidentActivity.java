@@ -13,6 +13,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -21,11 +22,19 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     private AutoCompleteTextView incidentType;
     private EditText dateInput, timeInput, locationInput, descriptionInput, nameInput, phoneInput, emailInput;
+    private SessionManager sessionManager;
+    private String accountId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
+
+        sessionManager = new SessionManager(this);
+        GoogleSignInAccount account = sessionManager.getSignedInAccount();
+        if (account != null) {
+            accountId = account.getId();
+        }
 
         TextView reportIncidentText = findViewById(R.id.reportIncidentText);
         incidentType = findViewById(R.id.incidentType);
@@ -109,10 +118,24 @@ public class ReportIncidentActivity extends AppCompatActivity {
         String phone = phoneInput.getText().toString();
         String email = emailInput.getText().toString();
 
-        Toast.makeText(this, "Report Submitted", Toast.LENGTH_SHORT).show();
+        if (accountId != null) {
+            // Save the report along with the accountId
+            Intent intent = new Intent();
+            intent.putExtra("accountId", accountId);
+            // Add other report details to the intent if needed
+            Toast.makeText(this, "Report Submitted by User: " + accountId, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Report Submitted (User not logged in)", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showReportHistory() {
-        Toast.makeText(this, "Report History Clicked", Toast.LENGTH_SHORT).show();
+        if (sessionManager.isLoggedIn()) {
+            Toast.makeText(this, "Opening Report History", Toast.LENGTH_SHORT).show();
+            // Intent to Report History Activity
+            // Pass the accountId if needed to filter reports
+        } else {
+            Toast.makeText(this, "Please log in to view report history.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
