@@ -40,11 +40,9 @@ public class ReportIncidentActivity extends AppCompatActivity {
         submitReportButton = findViewById(R.id.submitReportButton);
         reportHistoryButton = findViewById(R.id.reportHistoryButton);
 
-        // Setting up Date and Time Pickers
         dateInput.setOnClickListener(view -> showDatePicker());
         timeInput.setOnClickListener(view -> showTimePicker());
 
-        // Button Click Listeners
         uploadImageButton.setOnClickListener(view -> uploadImage());
         removeAllButton.setOnClickListener(view -> clearAllFields());
         submitReportButton.setOnClickListener(view -> submitReport());

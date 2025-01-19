@@ -14,6 +14,7 @@
     <!-- Title with back arrow -->
     <TextView
         android:layout_width="wrap_content"
+        android:id="@+id/backButton"
         android:layout_height="wrap_content"
         android:text="Emergency Contact"
         android:textSize="18sp"
@@ -29,9 +30,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Search Staff Directory"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         app:icon="@android:drawable/ic_menu_search"
         app:iconGravity="textStart"
+        app:backgroundTint="@color/blue_dark"
         style="@style/Widget.MaterialComponents.Button"/>
 
     <!-- Contact Person Section -->
@@ -46,6 +48,7 @@
 
     <!-- Phone Number -->
     <TextView
+        android:id="@+id/phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="+603 8870 4800"
@@ -54,10 +57,14 @@
         android:drawableEnd="@drawable/ic_forward"
         android:drawablePadding="16dp"
         android:gravity="center_vertical"
-        android:paddingVertical="8dp"/>
+        android:paddingVertical="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"/>
 
     <!-- Fax Number -->
     <TextView
+        android:id="@+id/fax_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="+603 8870 4848"
@@ -66,10 +73,14 @@
         android:drawableEnd="@drawable/ic_forward"
         android:drawablePadding="16dp"
         android:gravity="center_vertical"
-        android:paddingVertical="8dp"/>
+        android:paddingVertical="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"/>
 
     <!-- Email -->
     <TextView
+        android:id="@+id/email_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="admin@nadma.gov.my"
@@ -78,7 +89,10 @@
         android:drawableEnd="@drawable/ic_forward"
         android:drawablePadding="16dp"
         android:gravity="center_vertical"
-        android:paddingVertical="8dp"/>
+        android:paddingVertical="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"/>
 
     <!-- Office Location -->
     <TextView
