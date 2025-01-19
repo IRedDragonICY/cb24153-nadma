@@ -22,7 +22,7 @@ class LocationService(private val context: Context) {
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            onResult("Permission not granted")
+            onResult("Click here to give permission")
             return
         }
 
