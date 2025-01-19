@@ -1,5 +1,6 @@
 package com.ireddragonicy.nadma
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -50,7 +51,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps) {
 
         fetchData()
 
-        binding.headerMaps.iconSettings.setOnClickListener {}
+        binding.headerMaps.iconSettings.setOnClickListener {
+            val intent = Intent(context, MapsSettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {
