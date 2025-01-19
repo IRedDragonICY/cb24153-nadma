@@ -4,10 +4,13 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,9 +25,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.ByteArrayOutputStream;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class ReportIncidentActivity extends AppCompatActivity {
 
@@ -38,6 +47,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private MaterialButton uploadImageButton;
     private MaterialButton historyReportButton;
     private ImageView backButton;
+    private String base64Image;
+    private FirebaseFirestore db;
+    private List<String> incidentTypeList;
+    private String reportId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +63,20 @@ public class ReportIncidentActivity extends AppCompatActivity {
             accountId = account.getId();
         }
 
+        db = FirebaseFirestore.getInstance();
+        incidentTypeList = Arrays.asList("Flood", "Landslide", "Fire", "Earthquake", "Other");
+
         initializeViews();
         setupClickListeners();
         setupLaunchers();
         setupBackPressHandler();
+        setupIncidentTypeDropdown();
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("report_id")) {
+            reportId = intent.getStringExtra("report_id");
+            populateFieldsForEdit(intent);
+        }
     }
 
     private void initializeViews() {
@@ -75,6 +98,11 @@ public class ReportIncidentActivity extends AppCompatActivity {
         backButton = findViewById(R.id.backButton);
     }
 
+    private void setupIncidentTypeDropdown() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, incidentTypeList);
+        incidentType.setAdapter(adapter);
+    }
+
     private void setupClickListeners() {
         dateInput.setOnClickListener(view -> showDatePicker());
         timeInput.setOnClickListener(view -> showTimePicker());
@@ -91,37 +119,51 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     private void setupLaunchers() {
         cameraLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    Bundle extras = result.getData().getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    if (imageBitmap != null) {
-                        uploadedImageView.setImageBitmap(imageBitmap);
-                        uploadedImageView.setVisibility(View.VISIBLE);
-                        uploadImageButton.setVisibility(View.GONE);
-                    } else {
-                        Toast.makeText(this, "Failed to capture image.", Toast.LENGTH_SHORT).show();
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Bundle extras = result.getData().getExtras();
+                        Bitmap imageBitmap = (Bitmap) extras.get("data");
+                        if (imageBitmap != null) {
+                            uploadedImageView.setImageBitmap(imageBitmap);
+                            uploadedImageView.setVisibility(View.VISIBLE);
+                            uploadImageButton.setVisibility(View.GONE);
+                            base64Image = bitmapToBase64(imageBitmap);
+                        } else {
+                            Toast.makeText(this, "Failed to capture image.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
-            }
         );
 
         galleryLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    Uri selectedImageUri = result.getData().getData();
-                    if (selectedImageUri != null) {
-                        uploadedImageView.setImageURI(selectedImageUri);
-                        uploadedImageView.setVisibility(View.VISIBLE);
-                        uploadImageButton.setVisibility(View.GONE);
-                    } else {
-                        Toast.makeText(this, "Failed to retrieve image from gallery.", Toast.LENGTH_SHORT).show();
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri selectedImageUri = result.getData().getData();
+                        if (selectedImageUri != null) {
+                            try {
+                                Bitmap imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                                uploadedImageView.setImageBitmap(imageBitmap);
+                                uploadedImageView.setVisibility(View.VISIBLE);
+                                uploadImageButton.setVisibility(View.GONE);
+                                base64Image = bitmapToBase64(imageBitmap);
+                            } catch (Exception e) {
+                                Toast.makeText(this, "Failed to retrieve image from gallery.", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "Failed to retrieve image from gallery.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
-            }
         );
+    }
+
+    private String bitmapToBase64(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
     private void setupBackPressHandler() {
@@ -193,6 +235,32 @@ public class ReportIncidentActivity extends AppCompatActivity {
         emailInput.setText("");
         uploadedImageView.setVisibility(View.GONE);
         uploadImageButton.setVisibility(View.VISIBLE);
+        base64Image = null;
+        reportId = null;
+    }
+
+    private void populateFieldsForEdit(Intent intent) {
+        incidentType.setText(intent.getStringExtra("incidentType"));
+        dateInput.setText(intent.getStringExtra("date"));
+        timeInput.setText(intent.getStringExtra("time"));
+        locationInput.setText(intent.getStringExtra("location"));
+        descriptionInput.setText(intent.getStringExtra("description"));
+        nameInput.setText(intent.getStringExtra("name"));
+        phoneInput.setText(intent.getStringExtra("phone"));
+        emailInput.setText(intent.getStringExtra("email"));
+        String imageString = intent.getStringExtra("base64Image");
+        if (imageString != null && !imageString.isEmpty()) {
+            byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            uploadedImageView.setImageBitmap(decodedByte);
+            uploadedImageView.setVisibility(View.VISIBLE);
+            uploadImageButton.setVisibility(View.GONE);
+            base64Image = imageString;
+        } else {
+            uploadedImageView.setVisibility(View.GONE);
+            uploadImageButton.setVisibility(View.VISIBLE);
+            base64Image = null;
+        }
     }
 
     private void submitReport() {
@@ -209,13 +277,46 @@ public class ReportIncidentActivity extends AppCompatActivity {
         String phone = phoneInput.getText().toString();
         String email = emailInput.getText().toString();
 
+        saveReportToFirestore(incidentTypeText, date, time, location, description, name, phone, email, base64Image);
+    }
+
+    private void saveReportToFirestore(String incidentTypeText, String date, String time, String location, String description, String name, String phone, String email, String base64Image) {
+        Map<String, Object> report = new HashMap<>();
+        report.put("incidentType", incidentTypeText);
+        report.put("date", date);
+        report.put("time", time);
+        report.put("location", location);
+        report.put("description", description);
+        report.put("name", name);
+        report.put("phone", phone);
+        report.put("email", email);
+        report.put("base64Image", base64Image);
         if (accountId != null) {
-            Toast.makeText(this, "Report Submitted by User: " + accountId, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Report Submitted (User not logged in)", Toast.LENGTH_SHORT).show();
+            report.put("userId", accountId);
         }
 
-        clearAllFields();
+        if (reportId != null) {
+            db.collection("reports").document(reportId)
+                    .update(report)
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(this, "Report Updated", Toast.LENGTH_SHORT).show();
+                        clearAllFields();
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Failed to update report.", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            db.collection("reports").add(report)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(this, "Report Submitted", Toast.LENGTH_SHORT).show();
+                        clearAllFields();
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Failed to submit report.", Toast.LENGTH_SHORT).show();
+                    });
+        }
     }
 
     private boolean validateInputs() {

@@ -15,7 +15,9 @@ jsoup = "1.15.3"
 firebaseBom = "33.8.0"
 playServicesAuth = "21.3.0"
 playServicesMaps = "19.0.0"
-okhttp3 = "4.11.0" # Tambahkan versi okhttp3
+okhttp3 = "4.11.0"
+firebaseFirestore = "24.10.2"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +43,8 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
+firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebaseFirestore"}
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
