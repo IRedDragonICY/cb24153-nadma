@@ -57,7 +57,7 @@
                             android:id="@+id/number_flood"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="123"
+                            android:text="0"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/white" />
@@ -99,7 +99,6 @@
                         android:gravity="center"
                         android:padding="8dp">
 
-                        <!-- Icon -->
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
@@ -112,12 +111,11 @@
                             android:id="@+id/number_landslide"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="45"
+                            android:text="0"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/white" />
 
-                        <!-- Text -->
                         <TextView
                             android:id="@+id/text_landslide"
                             android:layout_width="match_parent"
@@ -154,7 +152,6 @@
                         android:gravity="center"
                         android:padding="8dp">
 
-                        <!-- Icon -->
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
@@ -162,17 +159,15 @@
                             android:contentDescription="Fire Icon"
                             android:tint="@color/white" />
 
-                        <!-- Number -->
                         <TextView
                             android:id="@+id/number_fire"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="67"
+                            android:text="0"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/white" />
 
-                        <!-- Text -->
                         <TextView
                             android:id="@+id/text_fire"
                             android:layout_width="match_parent"
@@ -209,7 +204,6 @@
                         android:gravity="center"
                         android:padding="8dp">
 
-                        <!-- Icon -->
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
@@ -230,7 +224,7 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:text="12"
+                                android:text="0"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/white"
@@ -242,7 +236,7 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:text="34"
+                                android:text="0"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/white"
@@ -273,7 +267,6 @@
                                 app:autoSizeMaxTextSize="14sp"
                                 app:autoSizeStepGranularity="1sp" />
 
-                            <!-- Label District -->
                             <TextView
                                 android:id="@+id/text_district"
                                 android:layout_width="0dp"
@@ -320,7 +313,6 @@
                         android:gravity="center"
                         android:padding="8dp">
 
-                        <!-- Icon -->
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
@@ -328,17 +320,15 @@
                             android:contentDescription="Family Icon"
                             android:tint="@color/white" />
 
-                        <!-- Number -->
                         <TextView
                             android:id="@+id/number_family"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="89"
+                            android:text="0"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/white" />
 
-                        <!-- Text -->
                         <TextView
                             android:id="@+id/text_family"
                             android:layout_width="match_parent"
@@ -375,7 +365,6 @@
                         android:gravity="center"
                         android:padding="8dp">
 
-                        <!-- Icon -->
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
@@ -383,17 +372,15 @@
                             android:contentDescription="Injuries Icon"
                             android:tint="@color/white" />
 
-                        <!-- Number -->
                         <TextView
                             android:id="@+id/number_injuries"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="56"
+                            android:text="0"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/white" />
 
-                        <!-- Text -->
                         <TextView
                             android:id="@+id/text_injuries"
                             android:layout_width="match_parent"
@@ -430,7 +417,6 @@
                         android:gravity="center"
                         android:padding="8dp">
 
-                        <!-- Icon -->
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
@@ -438,17 +424,15 @@
                             android:contentDescription="Fatality Icon"
                             android:tint="@color/white" />
 
-                        <!-- Number -->
                         <TextView
                             android:id="@+id/number_fatality"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="23"
+                            android:text="0"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/white" />
 
-                        <!-- Text -->
                         <TextView
                             android:id="@+id/text_fatality"
                             android:layout_width="match_parent"
@@ -485,7 +469,6 @@
                         android:gravity="center"
                         android:padding="8dp">
 
-                        <!-- Icon -->
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
@@ -493,17 +476,15 @@
                             android:contentDescription="PPS Active Icon"
                             android:tint="@color/white" />
 
-                        <!-- Number -->
                         <TextView
                             android:id="@+id/number_pps_active"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="78"
+                            android:text="0"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/white" />
 
-                        <!-- Text -->
                         <TextView
                             android:id="@+id/text_pps_active"
                             android:layout_width="match_parent"
