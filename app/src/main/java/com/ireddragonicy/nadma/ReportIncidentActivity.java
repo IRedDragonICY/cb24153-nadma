@@ -2,30 +2,32 @@ package com.ireddragonicy.nadma;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
+
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ReportIncidentActivity extends AppCompatActivity {
 
-    private TextView reportIncidentText;
     private AutoCompleteTextView incidentType;
     private EditText dateInput, timeInput, locationInput, descriptionInput, nameInput, phoneInput, emailInput;
-    private MaterialButton uploadImageButton, removeAllButton, submitReportButton, reportHistoryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
 
-        reportIncidentText = findViewById(R.id.reportIncidentText);
+        TextView reportIncidentText = findViewById(R.id.reportIncidentText);
         incidentType = findViewById(R.id.incidentType);
         dateInput = findViewById(R.id.dateInput);
         timeInput = findViewById(R.id.timeInput);
@@ -35,10 +37,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
         phoneInput = findViewById(R.id.phoneInput);
         emailInput = findViewById(R.id.emailInput);
 
-        uploadImageButton = findViewById(R.id.uploadImageButton);
-        removeAllButton = findViewById(R.id.removeAllButton);
-        submitReportButton = findViewById(R.id.submitReportButton);
-        reportHistoryButton = findViewById(R.id.reportHistoryButton);
+        MaterialButton uploadImageButton = findViewById(R.id.uploadImageButton);
+        MaterialButton removeAllButton = findViewById(R.id.removeAllButton);
+        MaterialButton submitReportButton = findViewById(R.id.submitReportButton);
+        MaterialButton historyReportButtonBottom = findViewById(R.id.reportHistoryButtonBottom);
 
         dateInput.setOnClickListener(view -> showDatePicker());
         timeInput.setOnClickListener(view -> showTimePicker());
@@ -46,7 +48,17 @@ public class ReportIncidentActivity extends AppCompatActivity {
         uploadImageButton.setOnClickListener(view -> uploadImage());
         removeAllButton.setOnClickListener(view -> clearAllFields());
         submitReportButton.setOnClickListener(view -> submitReport());
-        reportHistoryButton.setOnClickListener(view -> showReportHistory());
+        historyReportButtonBottom.setOnClickListener(view -> showReportHistory());
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(ReportIncidentActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void showDatePicker() {
@@ -64,7 +76,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                 (view, hourOfDay, minute) -> {
-                    String selectedTime = hourOfDay + ":" + String.format("%02d", minute);
+                    String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
                     timeInput.setText(selectedTime);
                 },
                 calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
@@ -72,7 +84,6 @@ public class ReportIncidentActivity extends AppCompatActivity {
     }
 
     private void uploadImage() {
-        // Implement your image upload logic here
         Toast.makeText(this, "Upload Image Clicked", Toast.LENGTH_SHORT).show();
     }
 
@@ -89,7 +100,6 @@ public class ReportIncidentActivity extends AppCompatActivity {
     }
 
     private void submitReport() {
-        // Collect data from input fields and handle form submission
         String incidentTypeText = incidentType.getText().toString();
         String date = dateInput.getText().toString();
         String time = timeInput.getText().toString();
@@ -99,12 +109,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
         String phone = phoneInput.getText().toString();
         String email = emailInput.getText().toString();
 
-        // Add logic to validate and send data to the server or save it
         Toast.makeText(this, "Report Submitted", Toast.LENGTH_SHORT).show();
     }
 
     private void showReportHistory() {
-        // Implement logic to show report history
         Toast.makeText(this, "Report History Clicked", Toast.LENGTH_SHORT).show();
     }
 }

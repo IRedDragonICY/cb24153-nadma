@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ireddragonicy.nadma"
-        minSdk = 21
+        minSdk = 33
         //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
