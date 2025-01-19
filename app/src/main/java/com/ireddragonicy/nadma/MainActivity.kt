@@ -1,6 +1,5 @@
 package com.ireddragonicy.nadma
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,8 +7,6 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
-    private val sessionManager by lazy { SessionManager(this) }
 
     private val navOrder = listOf(
         R.id.nav_home,
@@ -24,13 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if (savedInstanceState == null) {
-            if (!sessionManager.isLoggedIn) {
-                startActivity(Intent(this, LoginActivity::class.java))
-            }
-        }
-
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 

@@ -11,10 +11,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -22,25 +19,21 @@ import com.google.android.material.button.MaterialButton;
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
-    private GoogleSignInClient mGoogleSignInClient;
     private ActivityResultLauncher<Intent> googleSignInLauncher;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        sessionManager = new SessionManager(this);
+
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> finish());
 
         TextView loginTextView = findViewById(R.id.link_login);
         loginTextView.setOnClickListener(v -> finish());
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         MaterialButton googleSignUpButton = findViewById(R.id.googleSignUpButton);
         googleSignUpButton.setOnClickListener(v -> signInWithGoogle());
@@ -50,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
                         Intent data = result.getData();
-                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                        Task<GoogleSignInAccount> task = sessionManager.handleSignInResult(data);
                         handleSignInResult(task);
                     } else {
                         Toast.makeText(this, "Google sign in canceled", Toast.LENGTH_SHORT).show();
@@ -60,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void signInWithGoogle() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        Intent signInIntent = sessionManager.getSignInIntent();
         googleSignInLauncher.launch(signInIntent);
     }
 
@@ -70,17 +63,16 @@ public class RegisterActivity extends AppCompatActivity {
             updateUI(account);
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
             Toast.makeText(this, "Google sign in failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
+            sessionManager.setUserSession(account);
             String personName = account.getDisplayName();
             String personEmail = account.getEmail();
-            String personId = account.getId();
-            Toast.makeText(this, "Google sign in successful!\nName: " + personName + "\nEmail: " + personEmail, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Google sign up successful!\nName: " + personName + "\nEmail: " + personEmail, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
