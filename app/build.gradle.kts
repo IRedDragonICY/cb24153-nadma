@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -64,7 +65,6 @@ android {
 
 }
 
-
 dependencies {
     implementation(libs.play.services.location)
     implementation(libs.androidx.core.ktx)
@@ -78,6 +78,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.jsoup)
     implementation(libs.osmdroid.android)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
