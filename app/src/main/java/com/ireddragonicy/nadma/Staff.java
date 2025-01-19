@@ -17,47 +17,27 @@ public class Staff {
         this.jawatan = jawatan;
         this.noTelefon = noTelefon;
         this.email = email;
-        this.isHeader=false;
+        this.isHeader = false;
     }
 
     public String getBil() {
         return bil;
     }
 
-    public void setBil(String bil) {
-        this.bil = bil;
-    }
-
     public String getNama() {
         return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
     }
 
     public String getJawatan() {
         return jawatan;
     }
 
-    public void setJawatan(String jawatan) {
-        this.jawatan = jawatan;
-    }
-
     public String getNoTelefon() {
         return noTelefon;
     }
 
-    public void setNoTelefon(String noTelefon) {
-        this.noTelefon = noTelefon;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public boolean isHeader() {
