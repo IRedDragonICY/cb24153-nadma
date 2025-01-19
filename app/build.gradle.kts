@@ -82,6 +82,7 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.play.services.auth)
     implementation(libs.play.services.maps)
+    implementation(libs.okhttp3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
+import com.google.android.material.button.MaterialButton;
+
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -39,6 +41,7 @@ public class EmergencyContactActivity extends AppCompatActivity {
         setupContactInfo();
         setupBackButton();
         configureActionBar();
+        setupStaffDirectoryButton();
     }
 
     private void initializeOSMConfiguration() {
@@ -109,6 +112,14 @@ public class EmergencyContactActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void setupStaffDirectoryButton(){
+        MaterialButton staffDirectoryButton = findViewById(R.id.btn_search_staff_directory);
+          staffDirectoryButton.setOnClickListener(view -> {
+              Intent intent = new Intent(this, StaffDirectoryActivity.class);
+              startActivity(intent);
+          });
     }
 
     @Override
