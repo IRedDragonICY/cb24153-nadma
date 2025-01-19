@@ -3,13 +3,21 @@ package com.ireddragonicy.nadma;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -24,6 +32,12 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private EditText dateInput, timeInput, locationInput, descriptionInput, nameInput, phoneInput, emailInput;
     private SessionManager sessionManager;
     private String accountId;
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private ActivityResultLauncher<Intent> galleryLauncher;
+    private ImageView uploadedImageView;
+    private MaterialButton uploadImageButton;
+    private MaterialButton historyReportButton;
+    private ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +50,13 @@ public class ReportIncidentActivity extends AppCompatActivity {
             accountId = account.getId();
         }
 
+        initializeViews();
+        setupClickListeners();
+        setupLaunchers();
+        setupBackPressHandler();
+    }
+
+    private void initializeViews() {
         TextView reportIncidentText = findViewById(R.id.reportIncidentText);
         incidentType = findViewById(R.id.incidentType);
         dateInput = findViewById(R.id.dateInput);
@@ -46,19 +67,64 @@ public class ReportIncidentActivity extends AppCompatActivity {
         phoneInput = findViewById(R.id.phoneInput);
         emailInput = findViewById(R.id.emailInput);
 
-        MaterialButton uploadImageButton = findViewById(R.id.uploadImageButton);
+        uploadImageButton = findViewById(R.id.uploadImageButton);
+        historyReportButton = findViewById(R.id.historyReportButton);
         MaterialButton removeAllButton = findViewById(R.id.removeAllButton);
         MaterialButton submitReportButton = findViewById(R.id.submitReportButton);
-        MaterialButton historyReportButtonBottom = findViewById(R.id.reportHistoryButtonBottom);
+        uploadedImageView = findViewById(R.id.uploadedImageView);
+        backButton = findViewById(R.id.backButton);
+    }
 
+    private void setupClickListeners() {
         dateInput.setOnClickListener(view -> showDatePicker());
         timeInput.setOnClickListener(view -> showTimePicker());
+        uploadImageButton.setOnClickListener(view -> showImagePickerDialog());
+        historyReportButton.setOnClickListener(view -> showReportHistory());
+        backButton.setOnClickListener(view -> onBackPressed());
 
-        uploadImageButton.setOnClickListener(view -> uploadImage());
+        MaterialButton removeAllButton = findViewById(R.id.removeAllButton);
+        MaterialButton submitReportButton = findViewById(R.id.submitReportButton);
+
         removeAllButton.setOnClickListener(view -> clearAllFields());
         submitReportButton.setOnClickListener(view -> submitReport());
-        historyReportButtonBottom.setOnClickListener(view -> showReportHistory());
+    }
 
+    private void setupLaunchers() {
+        cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Bundle extras = result.getData().getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    if (imageBitmap != null) {
+                        uploadedImageView.setImageBitmap(imageBitmap);
+                        uploadedImageView.setVisibility(View.VISIBLE);
+                        uploadImageButton.setVisibility(View.GONE);
+                    } else {
+                        Toast.makeText(this, "Failed to capture image.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        );
+
+        galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Uri selectedImageUri = result.getData().getData();
+                    if (selectedImageUri != null) {
+                        uploadedImageView.setImageURI(selectedImageUri);
+                        uploadedImageView.setVisibility(View.VISIBLE);
+                        uploadImageButton.setVisibility(View.GONE);
+                    } else {
+                        Toast.makeText(this, "Failed to retrieve image from gallery.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        );
+    }
+
+    private void setupBackPressHandler() {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -68,6 +134,30 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void showImagePickerDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose an action");
+        String[] options = {"Take Photo", "Choose from Gallery"};
+        builder.setItems(options, (dialog, which) -> {
+            if (which == 0) {
+                openCamera();
+            } else if (which == 1) {
+                openGallery();
+            }
+        });
+        builder.show();
+    }
+
+    private void openCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraLauncher.launch(takePictureIntent);
+    }
+
+    private void openGallery() {
+        Intent pickPhotoIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        galleryLauncher.launch(pickPhotoIntent);
     }
 
     private void showDatePicker() {
@@ -92,10 +182,6 @@ public class ReportIncidentActivity extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-    private void uploadImage() {
-        Toast.makeText(this, "Upload Image Clicked", Toast.LENGTH_SHORT).show();
-    }
-
     private void clearAllFields() {
         incidentType.setText("");
         dateInput.setText("");
@@ -105,10 +191,15 @@ public class ReportIncidentActivity extends AppCompatActivity {
         nameInput.setText("");
         phoneInput.setText("");
         emailInput.setText("");
-        Toast.makeText(this, "All fields cleared", Toast.LENGTH_SHORT).show();
+        uploadedImageView.setVisibility(View.GONE);
+        uploadImageButton.setVisibility(View.VISIBLE);
     }
 
     private void submitReport() {
+        if (!validateInputs()) {
+            return;
+        }
+
         String incidentTypeText = incidentType.getText().toString();
         String date = dateInput.getText().toString();
         String time = timeInput.getText().toString();
@@ -119,21 +210,42 @@ public class ReportIncidentActivity extends AppCompatActivity {
         String email = emailInput.getText().toString();
 
         if (accountId != null) {
-            // Save the report along with the accountId
-            Intent intent = new Intent();
-            intent.putExtra("accountId", accountId);
-            // Add other report details to the intent if needed
             Toast.makeText(this, "Report Submitted by User: " + accountId, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Report Submitted (User not logged in)", Toast.LENGTH_SHORT).show();
         }
+
+        clearAllFields();
+    }
+
+    private boolean validateInputs() {
+        if (incidentType.getText().toString().trim().isEmpty()) {
+            incidentType.setError("Please select incident type");
+            return false;
+        }
+        if (dateInput.getText().toString().trim().isEmpty()) {
+            dateInput.setError("Please select date");
+            return false;
+        }
+        if (timeInput.getText().toString().trim().isEmpty()) {
+            timeInput.setError("Please select time");
+            return false;
+        }
+        if (locationInput.getText().toString().trim().isEmpty()) {
+            locationInput.setError("Please enter location");
+            return false;
+        }
+        if (descriptionInput.getText().toString().trim().isEmpty()) {
+            descriptionInput.setError("Please enter description");
+            return false;
+        }
+        return true;
     }
 
     private void showReportHistory() {
         if (sessionManager.isLoggedIn()) {
-            Toast.makeText(this, "Opening Report History", Toast.LENGTH_SHORT).show();
-            // Intent to Report History Activity
-            // Pass the accountId if needed to filter reports
+            Intent intent = new Intent(this, ReportHistoryActivity.class);
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Please log in to view report history.", Toast.LENGTH_SHORT).show();
         }
