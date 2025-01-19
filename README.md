@@ -1,7 +1,3 @@
-Here's the updated `README.md` file with the requested additions:
-
----
-
 # Nadma
 
 <p align="center">
