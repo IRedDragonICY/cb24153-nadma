@@ -85,8 +85,20 @@ This project is licensed under the GNU General Public License v3.0. See the [LIC
 ## Author
 <p align="center"> <img src="doc/umpsa-logo.png" alt="UMPSA Logo" width="128" height="128"> <img src="doc/uad-logo.png" alt="UAD Logo" width="128" height="128"> </p>
 
-- **Hendianto Mohammad Farid**  
-  - **Matrix Number**: CB24153  
-  - **Affiliation**: Ahmad Dahlan University (mobility) to Universiti Malaysia Pahang Al-Sultan Abdullah  
-  - **Course**: Mobile Application Development (MAD)  
+- **Dondok Andi Bintang Toar**
+  - **Matrix Number**: CB24152
+  - **Affiliation**: Universiti Malaysia Pahang Al-Sultan Abdullah
+  - **Course**: Mobile Application Development (MAD)
+  - **Instructor**: PUAN NABILAH BINTI ALIAS
+
+- **Hendianto Mohammad Farid**
+  - **Matrix Number**: CB24153
+  - **Affiliation**: Ahmad Dahlan University (mobility) to Universiti Malaysia Pahang Al-Sultan Abdullah
+  - **Course**: Mobile Application Development (MAD)
+  - **Instructor**: PUAN NABILAH BINTI ALIAS
+
+- **Reynanda Revano Maliq**
+  - **Matrix Number**: CB24254
+  - **Affiliation**: Universiti Malaysia Pahang Al-Sultan Abdullah
+  - **Course**: Mobile Application Development (MAD)
   - **Instructor**: PUAN NABILAH BINTI ALIAS
